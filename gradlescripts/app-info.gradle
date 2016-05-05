@@ -1,0 +1,14 @@
+ext {
+    crateMateConfig = [
+            compileSdkVersion: 23,
+            buildToolsVersion: '24.0.0 rc3',
+            minSdkVersion: 17,
+            targetSdkVersion: 23,
+            appVersionCode: 1,
+            appVersionName: '0.0.1',
+            domainVersionCode: 1,
+            domainVersionName: '0.0.1',
+            dataVersionCode: 1,
+            dataVersionName: '0.0.1',
+    ]
+}
