@@ -7,6 +7,8 @@ import javax.inject.Singleton;
 import dagger.Component;
 import uk.co.breaktek.asosdemo.ASOSDemoApplication;
 import uk.co.breaktek.asosdemo.common.annotation.ApplicationContext;
+import uk.co.breaktek.asosdemo.di.component.activity.SplashComponent;
+import uk.co.breaktek.asosdemo.di.module.activity.SplashModule;
 import uk.co.breaktek.asosdemo.di.module.global.ApplicationModule;
 
 /**
@@ -23,7 +25,7 @@ public interface ApplicationComponent {
     @ApplicationContext
     Context context();
 
-//    SplashComponent with(SplashModule module);
-//
+    SplashComponent with(SplashModule module);
+
 //    HomeComponent with(HomeModule module);
 }
