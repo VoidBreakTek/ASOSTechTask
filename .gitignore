@@ -82,3 +82,6 @@ $RECYCLE.BIN/
 
 privatenotes.md
 localsecrets.properties
+
+/.idea/workspace.xml
+/.idea/libraries
