@@ -7,25 +7,62 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.List;
 
-import io.realm.RealmObject;
+import io.realm.RealmList;
+import io.realm.RealmModel;
+import io.realm.annotations.RealmClass;
 import uk.co.breaktek.asosdemo.common.util.CustomToStringBuilder;
 
 /**
+ * Realm models are used for local caching. Realm models must extend RealmObject or implement the
+ * Realm model interface and have an empty constructor and non-final fields. These are awkward
+ * models that break encapsulation when passed around so are converted to immutable Domain models
+ * when passed to and from the cache
+ * <p/>
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-public class CategoriesEntity extends RealmObject {
-    @SerializedName("Description") public final String description;
-    @SerializedName("SortType") public final String sortType;
-    @SerializedName("Listing") public final List<CategoryListingEntity> categoryListings;
+@RealmClass
+public class CategoriesEntity implements RealmModel {
+    @SerializedName("Description")
+    public String description;
+    @SerializedName("SortType")
+    public String sortType;
+    @SerializedName("Listing")
+    public RealmList<CategoryListingEntity> categoryListings;
 
-    public CategoriesEntity(String description,
-                            String sortType,
-                            List<CategoryListingEntity> categoryListings) {
+    public CategoriesEntity() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getSortType() {
+        return sortType;
+    }
+
+    public void setSortType(String sortType) {
         this.sortType = sortType;
+    }
+
+    public List<CategoryListingEntity> getCategoryListings() {
+        return categoryListings;
+    }
+
+    public void setCategoryListings(RealmList<CategoryListingEntity> categoryListings) {
         this.categoryListings = categoryListings;
     }
 
+    public void setCategoryListings(List<CategoryListingEntity> categoryListings) {
+        RealmList<CategoryListingEntity> categoryListingEntities = new RealmList<>();
+        if (categoryListings != null && categoryListings.size() > 0) {
+            categoryListingEntities.addAll(categoryListings);
+        }
+        this.categoryListings = categoryListingEntities;
+    }
 
     @Override
     public String toString() {

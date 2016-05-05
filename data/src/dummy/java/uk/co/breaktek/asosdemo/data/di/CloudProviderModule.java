@@ -15,7 +15,7 @@ import uk.co.breaktek.asosdemo.data.net.DummyCloudProvider;
 /**
  * Dummy cloud provider module uses a local JSON file so can dev independent of network quickly
  * from read in file JSON
- * <p>
+ * <p/>
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 @Module

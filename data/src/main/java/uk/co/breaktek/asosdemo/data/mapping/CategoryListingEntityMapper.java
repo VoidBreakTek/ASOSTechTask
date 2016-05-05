@@ -23,7 +23,7 @@ public class CategoryListingEntityMapper extends ListMappable<CategoryListingEnt
         if (item != null) {
             listing = new CategoryListing.CategoryListingBuilder()
                     .id(item.categoryId)
-                    .name(item.name)
+                    .name(item.categoryName)
                     .productCount(item.productCount)
                     .build();
         }

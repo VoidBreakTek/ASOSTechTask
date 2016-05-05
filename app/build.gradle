@@ -20,10 +20,9 @@ android {
         }
     }
 
-    //Settings to 2g to not GC overhead limit on dex but also not hit CircleCI 4g total limit
     dexOptions {
         preDexLibraries = false
-        javaMaxHeapSize "2g"
+        javaMaxHeapSize "4g"
     }
 
     //There are known lint exceptions in Dagger2 compiler transitive dependencies which are propagated to our linting. This closure will disable the checks for that lib.

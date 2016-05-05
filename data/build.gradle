@@ -19,6 +19,12 @@ android {
         lintConfig rootProject.file('gradlescripts/lint.xml')
     }
 
+    //Settings to 2g to not GC overhead limit on dex but also not hit CircleCI 4g total limit
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+
     buildTypes {
         release {
             minifyEnabled false

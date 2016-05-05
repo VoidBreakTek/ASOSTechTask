@@ -26,13 +26,22 @@ public class CategoryTestModelConstants {
     }
 
     public static CategoryListingEntity categoryListingEntity1() {
-        return new CategoryListingEntity(categoryId, name, productCount);
+        CategoryListingEntity item = new CategoryListingEntity();
+        item.setCategoryId(categoryId);
+        item.setCategoryName(name);
+        item.setProductCount(productCount);
+        return item;
     }
 
     public static CategoriesEntity categoriesEntity1() {
         List<CategoryListingEntity> listings = new ArrayList();
         listings.add(categoryListingEntity1());
-        return new CategoriesEntity(description, sortType, listings);
+
+        CategoriesEntity item = new CategoriesEntity();
+        item.setDescription(description);
+        item.setSortType(sortType);
+        item.setCategoryListings(listings);
+        return item;
     }
 
     public static CategoryListing categoryListing1() {

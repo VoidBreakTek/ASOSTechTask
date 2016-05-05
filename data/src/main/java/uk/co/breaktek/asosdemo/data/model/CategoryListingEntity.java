@@ -5,19 +5,46 @@ import com.google.gson.annotations.SerializedName;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import io.realm.RealmModel;
+import io.realm.annotations.RealmClass;
 import uk.co.breaktek.asosdemo.common.util.CustomToStringBuilder;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-public class CategoryListingEntity {
-    @SerializedName("CategoryId") public final String categoryId;
-    @SerializedName("Name") public final String name;
-    @SerializedName("ProductCount") public final int productCount;
+@RealmClass
+public class CategoryListingEntity implements RealmModel {
+    @SerializedName("CategoryId")
+    public String categoryId;
+    @SerializedName("Name")
+    public String categoryName;
+    @SerializedName("ProductCount")
+    public int productCount;
 
-    public CategoryListingEntity(String categoryId, String name, int productCount) {
+    public CategoryListingEntity() {
+    }
+
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
-        this.name = name;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public int getProductCount() {
+        return productCount;
+    }
+
+    public void setProductCount(int productCount) {
         this.productCount = productCount;
     }
 
@@ -32,7 +59,7 @@ public class CategoryListingEntity {
         return new EqualsBuilder()
                 .append(productCount, that.productCount)
                 .append(categoryId, that.categoryId)
-                .append(name, that.name)
+                .append(categoryName, that.categoryName)
                 .isEquals();
     }
 
@@ -40,7 +67,7 @@ public class CategoryListingEntity {
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
                 .append(categoryId)
-                .append(name)
+                .append(categoryName)
                 .append(productCount)
                 .toHashCode();
     }
@@ -50,7 +77,7 @@ public class CategoryListingEntity {
     public String toString() {
         return new CustomToStringBuilder(this)
                 .append("categoryId", categoryId)
-                .append("name", name)
+                .append("categoryName", categoryName)
                 .append("productCount", productCount)
                 .toString();
     }

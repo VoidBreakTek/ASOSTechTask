@@ -39,6 +39,6 @@ public class CategoriesEntityMapperTest {
 
         Categories actual = mapper.transform(categoriesEntity);
 
-        assertThat(expected, equalTo(actual));
+        assertThat(actual, equalTo(expected));
     }
 }
