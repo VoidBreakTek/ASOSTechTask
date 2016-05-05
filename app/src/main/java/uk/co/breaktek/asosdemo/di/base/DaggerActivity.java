@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import uk.co.breaktek.cratemate.di.components.activity.ActivityComponent;
+import uk.co.breaktek.asosdemo.di.component.activity.ActivityComponent;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
