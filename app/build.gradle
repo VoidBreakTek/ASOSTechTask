@@ -64,4 +64,8 @@ dependencies {
 
     //Unit test dependencies
     testCompile testDependencies.junit
+
+    //Local module dependencies
+    compile project(':domain')
+    compile project(':common')
 }
