@@ -1,5 +1,5 @@
 ext {
-    crateMateConfig = [
+    appInfo = [
             compileSdkVersion: 23,
             buildToolsVersion: '24.0.0 rc3',
             minSdkVersion: 17,
