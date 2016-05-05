@@ -7,12 +7,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.List;
 
+import io.realm.RealmObject;
 import uk.co.breaktek.asosdemo.common.util.CustomToStringBuilder;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-public class CategoriesEntity {
+public class CategoriesEntity extends RealmObject {
     @SerializedName("Description") public final String description;
     @SerializedName("SortType") public final String sortType;
     @SerializedName("Listing") public final List<CategoryListingEntity> categoryListings;
