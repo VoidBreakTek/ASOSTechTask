@@ -1,0 +1,20 @@
+ext {
+    //Scripts for switching out the version code bracket for different product flavors
+    android {
+        applicationVariants.all { variant ->
+            def flavorVersion = variant.productFlavors.get(0).versionCode
+            variant.mergedFlavor.versionCode = flavorVersion * 1000000 + defaultConfig.versionCode
+            variant.outputs.each { output ->
+                def apk = output.outputFile;
+                def newName = "${output.name}-${defaultConfig.versionName}-${variant.mergedFlavor.versionCode}"
+                if (variant.buildType.versionNameSuffix) {
+                    newName += "-${variant.buildType.versionNameSuffix}"
+                }
+                if (output.zipAlign) {
+                    output.zipAlign.outputFile = new File((File) apk.parentFile, newName + '-aligned.apk');
+                }
+                output.packageApplication.outputFile = new File((File) apk.parentFile, newName + ".apk")
+            }
+        }
+    }
+}

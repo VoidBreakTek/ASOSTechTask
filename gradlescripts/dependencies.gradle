@@ -1,0 +1,74 @@
+ext {
+    //Version
+    supportLibrary = '23.3.0'
+    okHttp = '3.0.1'
+    robolectric = '3.0'
+    nevado = '1.3.2'
+    hamcrest = '2.0.0.0'
+    mockito = '1.9.5'
+    apacheCommons = '3.4'
+    butterknife = '7.0.1'
+    dagger2 = '2.3'
+    glassfishAnnotation = '10.0-b28'
+    junit = '4.12'
+    rxJava = '1.1.3'
+    rxAndroid = '1.1.0'
+    picasso = '2.5.2'
+    JSONassert = '1.3.0'
+    jsr250 = '1.0'
+    multidex = '1.0.1'
+    testRunner = '0.4.1'
+    espresso = '2.2.1'
+
+    supportDependencies = [
+            design           : "com.android.support:design:${supportLibrary}",
+            recyclerView     : "com.android.support:recyclerview-v7:${supportLibrary}",
+            cardView         : "com.android.support:cardview-v7:${supportLibrary}",
+            appCompat        : "com.android.support:appcompat-v7:${supportLibrary}",
+            supportAnnotation: "com.android.support:support-annotations:${supportLibrary}",
+            supportV4        : "com.android.support:support-v4:${supportLibrary}",
+            multidex         : "com.android.support:multidex:${multidex}"
+    ]
+
+    coreDependencies = [
+            okHttpClient       : "com.squareup.okhttp3:okhttp:${okHttp}",
+            apacheCommons      : "org.apache.commons:commons-lang3:${apacheCommons}",
+            butterknife        : "com.jakewharton:butterknife:${butterknife}",
+            dagger2            : "com.google.dagger:dagger:${dagger2}",
+            dagger2Compiler    : "com.google.dagger:dagger-compiler:${dagger2}",
+            glassfishAnnotation: "org.glassfish:javax.annotation:${glassfishAnnotation}",
+            rxJava             : "io.reactivex:rxjava:${rxJava}",
+            rxAndroid          : "io.reactivex:rxandroid:${rxAndroid}",
+            picasso            : "com.squareup.picasso:picasso:${picasso}",
+            jsr250             : "javax.annotation:jsr250-api:${jsr250}",
+    ]
+
+    testDependencies = [
+            okHttpMockServer: "com.squareup.okhttp3:mockwebserver:${okHttp}",
+            robolectric     : "org.robolectric:robolectric:${robolectric}",
+            nevado          : "org.skyscreamer:nevado:${nevado}",
+            mockitoCore     : "org.mockito:mockito-core:${mockito}",
+            junit           : "junit:junit:${junit}",
+            JSONassert      : "org.skyscreamer:jsonassert:${JSONassert}",
+            hamcrest        : "org.hamcrest:hamcrest-junit:${hamcrest}",
+    ]
+
+    androidTestDependencies = [
+            supportAnnotations: "com.android.support:support-annotations:${supportLibrary}",
+            testRunner        : "com.android.support.test:runner:${testRunner}",
+            testRules         : "com.android.support.test:rules:${testRunner}",
+            espresso          : "com.android.support.test.espresso:espresso-core:${espresso}",
+
+    ]
+
+    awsDependencies = [
+            awsCognito       : "com.amazonaws:aws-android-sdk-cognito:2.2.14",
+            awsSdk           : "com.amazonaws:aws-android-sdk-s3:2.+",
+            awsDdb           : "com.amazonaws:aws-android-sdk-ddb:2.+",
+            awsCore          : "com.amazonaws:aws-android-sdk-core:2.2.14",
+            awsApiGatewayCore: "com.amazonaws:aws-android-sdk-apigateway-core:2.2.6",
+    ]
+
+    classpathDependencies = [
+    ]
+}

@@ -1,0 +1,22 @@
+// These excludes allow the JAR libraries to build as the META-INF folders of pure java projects
+// are not automatically excluded correctly from builds and will cause build errors when
+// multiple
+// JAR dependencies are built with a META-INF folder in the classpath.
+android {
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/ASL2.0.txt'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+}

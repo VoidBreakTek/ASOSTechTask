@@ -79,10 +79,10 @@ $RECYCLE.BIN/
 # Android Studio
 *.iml
 .idea
-.idea/
 
 privatenotes.md
 localsecrets.properties
-.idea/encodings.xml
-.idea/workspace.xml
+
+/.idea/workspace.xml
+/.idea/libraries
 .idea/workspace.xml
