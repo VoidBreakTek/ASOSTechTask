@@ -1,4 +1,4 @@
-package uk.co.breaktek.asosdemo.di.component.global;
+package uk.co.breaktek.asosdemo.di.components.global;
 
 import uk.co.breaktek.asosdemo.ASOSDemoApplication;
 import uk.co.breaktek.asosdemo.di.module.global.ApplicationModule;

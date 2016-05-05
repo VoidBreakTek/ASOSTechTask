@@ -31,6 +31,22 @@ android {
         lintConfig rootProject.file('gradlescripts/lint.xml')
     }
 
+    flavorDimensions "version"
+    productFlavors {
+        dummy {
+            flavorDimension "version"
+            applicationId "com.student.studentprototype"
+            versionCode 1
+        }
+        prod {
+            flavorDimension "version"
+            applicationId "com.student.studentprototype"
+            versionCode 2
+        }
+    }
+
+    apply from: rootProject.file('gradlescripts/flavored-version-code.gradle')
+
     packagingOptions {
         //Many libs include metainf that isnt currently stripped correctly by gradle
         //for Android. Common metainf files are set to be ignored via this script
@@ -68,4 +84,9 @@ dependencies {
     //Local module dependencies
     compile project(':domain')
     compile project(':common')
+    compile project(':data')
+
+    //Configure which data module dependency to use by flavor
+    dummyCompile project(path: ':data', configuration: 'dummyRelease')
+    prodCompile project(path: ':data', configuration: 'prodRelease')
 }

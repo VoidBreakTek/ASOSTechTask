@@ -13,4 +13,8 @@ dependencies {
 
     //Rx dependencies
     compile coreDependencies.rxJava
+
+    compile coreDependencies.apacheCommons
+
+    compile(project(':common'))
 }

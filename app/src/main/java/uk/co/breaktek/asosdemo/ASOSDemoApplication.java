@@ -5,8 +5,8 @@ import android.content.Context;
 import android.support.multidex.MultiDex;
 import android.util.Log;
 
-import uk.co.breaktek.asosdemo.di.component.global.ApplicationComponent;
-import uk.co.breaktek.asosdemo.di.component.global.ApplicationComponentFactory;
+import uk.co.breaktek.asosdemo.di.components.global.ApplicationComponent;
+import uk.co.breaktek.asosdemo.di.components.global.ApplicationComponentFactory;
 
 /**
  * Base Application extension

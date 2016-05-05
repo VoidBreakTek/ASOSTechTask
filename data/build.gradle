@@ -23,10 +23,51 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //This is to publish additional flavored libs
+    publishNonDefault true
+    productFlavors {
+        dummy {
+            versionCode 1
+            versionName versionName + "-dummy-" + versionCode + "-" + getDate()
+        }
+        prod {
+            versionCode 2
+            versionName versionName + "-prod-" + versionCode + "-" + getDate()
+        }
+    }
 }
 
 dependencies {
+    //Local libs
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
+
+    //Rx Dependencies
+    compile coreDependencies.rxJava
+    compile coreDependencies.rxAndroid
+
+    //DI dependencies
+    compile coreDependencies.butterknife
+    compile coreDependencies.dagger2
+    provided coreDependencies.jsr250
+    apt(coreDependencies.dagger2Compiler) {
+        exclude module: 'guava'
+    }
+
+    compile coreDependencies.apacheCommons
+    compile coreDependencies.okHttpClient
+    compile coreDependencies.gson
+
+    //Support dependencies
+    compile supportDependencies.multidex
+
+    //Project dependencies
+    compile project(':common')
+    compile project(':domain')
+
+    //Test dependencies
+    testCompile testDependencies.junit
+    testCompile testDependencies.nevado
+    testCompile testDependencies.mockitoCore
+    testCompile testDependencies.robolectric
 }

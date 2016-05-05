@@ -17,6 +17,7 @@ allprojects {
     repositories {
         jcenter()
     }
+    apply from: rootProject.file('gradlescripts/get-date.gradle')
 }
 
 task clean(type: Delete) {

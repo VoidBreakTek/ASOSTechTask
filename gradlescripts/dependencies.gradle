@@ -19,6 +19,7 @@ ext {
     multidex = '1.0.1'
     testRunner = '0.4.1'
     espresso = '2.2.1'
+    gson = '2.6.2'
 
     supportDependencies = [
             design           : "com.android.support:design:${supportLibrary}",
@@ -41,6 +42,7 @@ ext {
             rxAndroid          : "io.reactivex:rxandroid:${rxAndroid}",
             picasso            : "com.squareup.picasso:picasso:${picasso}",
             jsr250             : "javax.annotation:jsr250-api:${jsr250}",
+            gson               : "com.google.code.gson:gson:${gson}",
     ]
 
     testDependencies = [
