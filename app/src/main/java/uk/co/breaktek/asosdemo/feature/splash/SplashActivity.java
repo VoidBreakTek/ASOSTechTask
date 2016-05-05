@@ -9,11 +9,13 @@ import butterknife.ButterKnife;
 import uk.co.breaktek.asosdemo.ASOSDemoApplication;
 import uk.co.breaktek.asosdemo.R;
 import uk.co.breaktek.asosdemo.di.base.DaggerActivity;
+import uk.co.breaktek.asosdemo.di.base.MvpActivity;
 import uk.co.breaktek.asosdemo.di.component.activity.ActivityComponent;
 import uk.co.breaktek.asosdemo.di.component.activity.SplashComponent;
 import uk.co.breaktek.asosdemo.di.module.activity.SplashModule;
+import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
-public class SplashActivity extends DaggerActivity implements SplashView {
+public class SplashActivity extends MvpActivity implements SplashView {
     private final Handler mHandler = new Handler();
     private final Runnable mHomeScreenRunnable = new Runnable() {
         @Override
@@ -69,5 +71,10 @@ public class SplashActivity extends DaggerActivity implements SplashView {
         // interrupted when backgrounded to ensure a full, stable startup is completed before
         // continuing
         finish();
+    }
+
+    @Override
+    protected ActivityPresenter getPresenter() {
+        return mPresenter;
     }
 }

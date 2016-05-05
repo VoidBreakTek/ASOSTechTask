@@ -9,6 +9,7 @@ import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 import uk.co.breaktek.asosdemo.data.interactor.GetMensCategories;
+import uk.co.breaktek.asosdemo.data.interactor.GetWomensCategories;
 import uk.co.breaktek.asosdemo.data.interactor.Interactor;
 import uk.co.breaktek.asosdemo.data.repository.CategoryRepository;
 
@@ -56,6 +57,6 @@ public class InteractorModule {
     Interactor getWomensCategories(@Named("SubscribeOn") Scheduler subscribeOnScheduler,
                                    @Named("ObserveOn") Scheduler observeOnScheduler,
                                    CategoryRepository repository) {
-        return new GetMensCategories(subscribeOnScheduler, observeOnScheduler, repository);
+        return new GetWomensCategories(subscribeOnScheduler, observeOnScheduler, repository);
     }
 }

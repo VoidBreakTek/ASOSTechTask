@@ -35,12 +35,12 @@ android {
     productFlavors {
         dummy {
             flavorDimension "version"
-            applicationId "com.student.studentprototype"
+            applicationId "uk.co.breaktek.asosdemo"
             versionCode 1
         }
         prod {
             flavorDimension "version"
-            applicationId "com.student.studentprototype"
+            applicationId "uk.co.breaktek.asosdemo"
             versionCode 2
         }
     }
@@ -51,6 +51,11 @@ android {
         //Many libs include metainf that isnt currently stripped correctly by gradle
         //for Android. Common metainf files are set to be ignored via this script
         apply from: rootProject.file('gradlescripts/exclude-metainf.gradle')
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 

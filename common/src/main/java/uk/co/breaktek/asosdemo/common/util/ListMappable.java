@@ -6,8 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Chris Shotton (Chris.Shotton@Student.com)
- * Copyright Student.com
+ * Chris Shotton (voidbreaktek@gmail.com)
  */
 public abstract class ListMappable<TA, TB> {
 

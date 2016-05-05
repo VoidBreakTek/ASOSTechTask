@@ -10,9 +10,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import javax.inject.Inject;
-
-import dagger.Module;
 import rx.Observable;
 import rx.Subscriber;
 import uk.co.breaktek.asosdemo.data.mapping.CategoriesEntityMapper;
@@ -21,19 +18,20 @@ import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
 
 /**
  * Dummy cloud provider to build out UX before settling on a remote client implementation
- * <p/>
+ * <p>
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-@Module
 public class DummyCloudProvider implements CloudProvider {
     public final static String TAG = DummyCloudProvider.class.getSimpleName();
     private final Context mContext;
 
-    @Inject Gson mGson;
-    @Inject CategoriesEntityMapper mCategoriesEntityMapper;
+    private final Gson mGson;
+    private final CategoriesEntityMapper mCategoriesEntityMapper;
 
-    public DummyCloudProvider(Context context) {
+    public DummyCloudProvider(Context context, Gson gson, CategoriesEntityMapper mapper) {
         this.mContext = context;
+        this.mGson = gson;
+        this.mCategoriesEntityMapper = mapper;
     }
 
     @Override
@@ -41,7 +39,8 @@ public class DummyCloudProvider implements CloudProvider {
         return Observable.create(new Observable.OnSubscribe<Categories>() {
             @Override
             public void call(Subscriber<? super Categories> subscriber) {
-                mCategoriesEntityMapper.transform(getDummyCategories());
+                subscriber.onNext(mCategoriesEntityMapper.transform(getDummyCategories()));
+                subscriber.onCompleted();
             }
         });
     }

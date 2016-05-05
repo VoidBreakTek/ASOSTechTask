@@ -37,5 +37,5 @@ public abstract class MvpActivity extends DaggerActivity implements ActivityMvpV
         getPresenter().destroy();
     }
 
-    abstract ActivityPresenter getPresenter();
+    protected abstract ActivityPresenter getPresenter();
 }

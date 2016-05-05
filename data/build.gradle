@@ -10,6 +10,7 @@ android {
         targetSdkVersion appInfo.targetSdkVersion
         versionCode appInfo.appVersionCode
         versionName appInfo.appVersionName
+        multiDexEnabled true
     }
 
     //There are known lint exceptions in Dagger2 compiler transitive dependencies which are propagated to our linting. This closure will disable the checks for that lib.
@@ -35,6 +36,11 @@ android {
             versionCode 2
             versionName versionName + "-prod-" + versionCode + "-" + getDate()
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
     }
 }
 
