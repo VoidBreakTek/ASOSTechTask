@@ -79,6 +79,8 @@ $RECYCLE.BIN/
 # Android Studio
 *.iml
 .idea
+.idea/
 
 privatenotes.md
 localsecrets.properties
+.idea/encodings.xml
