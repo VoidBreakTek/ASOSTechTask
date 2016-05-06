@@ -20,7 +20,7 @@ import uk.co.breaktek.asosdemo.reactive.RefreshSubscriber;
 @Singleton
 public class SplashPresenter implements ActivityPresenter<SplashView> {
     public static final String TAG = SplashPresenter.class.getSimpleName();
-    private static int SPLASH_TIME_OUT = 1500;
+    private static final int SPLASH_TIME_OUT = 1500;
 
     @Inject
     @Named("RefreshMensCategories")
@@ -42,7 +42,6 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
     @Override
     public void initialize() {
         Log.d(TAG, "Presenter initialize");
-        mView.showHomeScreen(SPLASH_TIME_OUT);
     }
 
     @Override
@@ -53,6 +52,11 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
     @Override
     public void resume() {
         Log.d(TAG, "Presenter resume");
+        refreshAllCategories();
+    }
+
+    private void refreshAllCategories() {
+        mCategoriesRefreshed = 0;
         refreshWomensCategories();
         refreshMensCategories();
     }
@@ -67,6 +71,7 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
 
             @Override
             public void onError(Throwable e) {
+                refreshFailed();
                 e.printStackTrace();
             }
         }, new EmptyInteractorParams());
@@ -82,21 +87,29 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
 
             @Override
             public void onError(Throwable e) {
+                refreshFailed();
                 e.printStackTrace();
             }
         }, new EmptyInteractorParams());
     }
 
-    private void singleRefreshComplete() {
+    private synchronized void singleRefreshComplete() {
+        mCategoriesRefreshed++;
+        Log.i(TAG, "singleRefreshComplete - " + mCategoriesRefreshed);
         if (mCategoriesRefreshed >= 2) {
             refreshComplete();
-        } else {
-            mCategoriesRefreshed++;
         }
     }
 
     private void refreshComplete() {
+        Log.i(TAG, "refreshComplete");
         mView.showHomeScreen(SPLASH_TIME_OUT);
+    }
+
+    private void refreshFailed() {
+        Log.i(TAG, "refreshFailed");
+        mView.showRefreshFailedError();
+        mView.closeApp();
     }
 
     @Override

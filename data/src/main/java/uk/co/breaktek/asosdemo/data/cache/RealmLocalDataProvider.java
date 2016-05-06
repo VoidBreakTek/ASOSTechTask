@@ -36,6 +36,7 @@ public class RealmLocalDataProvider implements LocalDataProvider {
         Realm realm = Realm.getInstance(mRealmConfiguration);
         try {
             realm.beginTransaction();
+//            realm.copyToRealmOrUpdate(model);
             realm.copyToRealm(model);
             realm.commitTransaction();
         } finally {

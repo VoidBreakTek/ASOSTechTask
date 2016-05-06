@@ -2,6 +2,8 @@ package uk.co.breaktek.asosdemo.feature.splash;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
@@ -16,13 +18,13 @@ import uk.co.breaktek.asosdemo.di.module.activity.SplashModule;
 import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
 public class SplashActivity extends MvpActivity implements SplashView {
-    private Handler mHandler;
+    private final Handler mHandler = new Handler();
 
     private final Runnable mHomeScreenRunnable = new Runnable() {
         @Override
         public void run() {
             startHomeActivity();
-            finish();
+            SplashActivity.this.finish();
         }
     };
 
@@ -34,7 +36,6 @@ public class SplashActivity extends MvpActivity implements SplashView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        mHandler = new Handler();
         mPresenter.bind(this);
         mPresenter.initialize();
     }
@@ -55,6 +56,17 @@ public class SplashActivity extends MvpActivity implements SplashView {
     @Override
     public void showHomeScreen(int delayMs) {
         mHandler.postDelayed(mHomeScreenRunnable, delayMs);
+    }
+
+    @Override
+    public void showRefreshFailedError() {
+        Toast.makeText(this, getString(R.string.activity_splash_refresh_error_toast_message), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void closeApp() {
+        Log.i(TAG, "closeApp");
+        finish();
     }
 
     private void startHomeActivity() {

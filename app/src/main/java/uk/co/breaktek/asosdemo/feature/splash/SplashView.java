@@ -14,4 +14,8 @@ public interface SplashView extends ActivityMvpView {
      * @param delayMs Delay in milliseconds
      */
     void showHomeScreen(int delayMs);
+
+    void showRefreshFailedError();
+
+    void closeApp();
 }
