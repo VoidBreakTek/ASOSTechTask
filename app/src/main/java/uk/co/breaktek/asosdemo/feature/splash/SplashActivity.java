@@ -16,7 +16,8 @@ import uk.co.breaktek.asosdemo.di.module.activity.SplashModule;
 import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
 public class SplashActivity extends MvpActivity implements SplashView {
-    private final Handler mHandler = new Handler();
+    private Handler mHandler;
+
     private final Runnable mHomeScreenRunnable = new Runnable() {
         @Override
         public void run() {
@@ -25,13 +26,15 @@ public class SplashActivity extends MvpActivity implements SplashView {
         }
     };
 
-    @Inject SplashPresenter mPresenter;
+    @Inject
+    SplashPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
+        mHandler = new Handler();
         mPresenter.bind(this);
         mPresenter.initialize();
     }
