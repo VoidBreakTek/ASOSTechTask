@@ -65,7 +65,7 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
         mRefreshMensCategories.execute(new RefreshSubscriber() {
             @Override
             public void onRefreshed() {
-                Log.i(TAG, "refreshMensCategories - onRefreshed");
+                Log.d(TAG, "refreshMensCategories - onRefreshed");
                 singleRefreshComplete();
             }
 
@@ -81,7 +81,7 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
         mRefreshWomensCategories.execute(new RefreshSubscriber() {
             @Override
             public void onRefreshed() {
-                Log.i(TAG, "refreshWomensCategories - onRefreshed");
+                Log.d(TAG, "refreshWomensCategories - onRefreshed");
                 singleRefreshComplete();
             }
 
@@ -95,19 +95,19 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
 
     private synchronized void singleRefreshComplete() {
         mCategoriesRefreshed++;
-        Log.i(TAG, "singleRefreshComplete - " + mCategoriesRefreshed);
+        Log.d(TAG, "singleRefreshComplete - " + mCategoriesRefreshed);
         if (mCategoriesRefreshed >= 2) {
             refreshComplete();
         }
     }
 
     private void refreshComplete() {
-        Log.i(TAG, "refreshComplete");
+        Log.d(TAG, "refreshComplete");
         mView.showHomeScreen(SPLASH_TIME_OUT);
     }
 
     private void refreshFailed() {
-        Log.i(TAG, "refreshFailed");
+        Log.d(TAG, "refreshFailed");
         mView.showRefreshFailedError();
         mView.closeApp();
     }
