@@ -2,8 +2,8 @@ package uk.co.breaktek.asosdemo.di.base;
 
 import android.os.Bundle;
 
-import uk.co.breaktek.cratemate.mvp.ActivityMvpView;
-import uk.co.breaktek.cratemate.mvp.ActivityPresenter;
+import uk.co.breaktek.asosdemo.mvp.ActivityMvpView;
+import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
 /**
  * Base Activity to pass Activity lifecycle events to bound presenter
@@ -37,5 +37,5 @@ public abstract class MvpActivity extends DaggerActivity implements ActivityMvpV
         getPresenter().destroy();
     }
 
-    abstract ActivityPresenter getPresenter();
+    protected abstract ActivityPresenter getPresenter();
 }

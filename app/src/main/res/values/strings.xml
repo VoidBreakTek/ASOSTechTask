@@ -5,4 +5,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="activity_splash_welcome_label">Hello, World!</string>
+    <string name="activity_splash_refresh_error_toast_message">Failed to load categories</string>
 </resources>
