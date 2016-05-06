@@ -8,10 +8,12 @@ import dagger.Provides;
 import rx.Scheduler;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-import uk.co.breaktek.asosdemo.data.interactor.GetMensCategories;
-import uk.co.breaktek.asosdemo.data.interactor.GetWomensCategories;
-import uk.co.breaktek.asosdemo.data.interactor.Interactor;
-import uk.co.breaktek.asosdemo.data.repository.CategoryRepository;
+import uk.co.breaktek.asosdemo.domain.interactor.GetMensCategories;
+import uk.co.breaktek.asosdemo.domain.interactor.GetWomensCategories;
+import uk.co.breaktek.asosdemo.domain.interactor.Interactor;
+import uk.co.breaktek.asosdemo.domain.interactor.RefreshMensCategories;
+import uk.co.breaktek.asosdemo.domain.interactor.RefreshWomensCategories;
+import uk.co.breaktek.asosdemo.domain.repository.CategoryRepository;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
@@ -58,5 +60,23 @@ public class InteractorModule {
                                    @Named("ObserveOn") Scheduler observeOnScheduler,
                                    CategoryRepository repository) {
         return new GetWomensCategories(subscribeOnScheduler, observeOnScheduler, repository);
+    }
+
+    @Singleton
+    @Provides
+    @Named("RefreshWomensCategories")
+    Interactor refreshWomensCategories(@Named("SubscribeOn") Scheduler subscribeOnScheduler,
+                                   @Named("ObserveOn") Scheduler observeOnScheduler,
+                                   CategoryRepository repository) {
+        return new RefreshWomensCategories(subscribeOnScheduler, observeOnScheduler, repository);
+    }
+
+    @Singleton
+    @Provides
+    @Named("RefreshMensCategories")
+    Interactor refreshMensCategories(@Named("SubscribeOn") Scheduler subscribeOnScheduler,
+                                       @Named("ObserveOn") Scheduler observeOnScheduler,
+                                       CategoryRepository repository) {
+        return new RefreshMensCategories(subscribeOnScheduler, observeOnScheduler, repository);
     }
 }

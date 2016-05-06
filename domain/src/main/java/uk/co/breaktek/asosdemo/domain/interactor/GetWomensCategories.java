@@ -1,22 +1,21 @@
-package uk.co.breaktek.asosdemo.data.interactor;
+package uk.co.breaktek.asosdemo.domain.interactor;
 
 import javax.inject.Inject;
 import javax.inject.Named;
 
 import rx.Observable;
 import rx.Scheduler;
-import uk.co.breaktek.asosdemo.data.repository.CategoryRepository;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 public class GetWomensCategories extends Interactor {
-    private final CategoryRepository mRepository;
+    private final uk.co.breaktek.asosdemo.domain.repository.CategoryRepository mRepository;
 
     @Inject
     public GetWomensCategories(@Named("SubscribeOn") Scheduler subscribeOn,
                                @Named("ObserveOn") Scheduler observeOn,
-                               CategoryRepository repository) {
+                               uk.co.breaktek.asosdemo.domain.repository.CategoryRepository repository) {
         super(subscribeOn, observeOn);
         this.mRepository = repository;
     }

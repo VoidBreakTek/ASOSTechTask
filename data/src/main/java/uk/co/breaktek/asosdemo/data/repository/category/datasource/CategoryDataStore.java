@@ -1,12 +1,13 @@
 package uk.co.breaktek.asosdemo.data.repository.category.datasource;
 
 import rx.Observable;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 public interface CategoryDataStore {
-    Observable<Categories> mensCategories();
-    Observable<Categories> womensCategories();
+    Observable<CategoriesEntity> mensCategories();
+
+    Observable<CategoriesEntity> womensCategories();
 }

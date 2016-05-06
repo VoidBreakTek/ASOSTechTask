@@ -6,14 +6,15 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 
-import rx.Subscriber;
-import uk.co.breaktek.asosdemo.data.interactor.Interactor;
+import uk.co.breaktek.asosdemo.domain.interactor.EmptyInteractorParams;
+import uk.co.breaktek.asosdemo.domain.interactor.Interactor;
 import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
+import uk.co.breaktek.asosdemo.reactive.RefreshSubscriber;
 
 /**
  * MVP Presenter for Splash screen. May seem excessive in this demo but would perform any startup
  * logic such as connectivity checks or retrieving remote config data such as feature switches.
- * <p>
+ * <p/>
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 @Singleton
@@ -22,16 +23,20 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
     private static int SPLASH_TIME_OUT = 1500;
 
     @Inject
-    @Named("GetMensCategories")
-    Interactor mGetMensCategories;
+    @Named("RefreshMensCategories")
+    Interactor mRefreshMensCategories;
+
+    @Inject
+    @Named("RefreshWomensCategories")
+    Interactor mRefreshWomensCategories;
 
     private SplashView mView;
+    private int mCategoriesRefreshed = 0;
 
     @Inject
     public SplashPresenter() {
         // Empty constructor with @Inject annotation allows Dagger to construct new instances on
         // request without an explicit module @Provides method
-
     }
 
     @Override
@@ -48,28 +53,58 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
     @Override
     public void resume() {
         Log.d(TAG, "Presenter resume");
-        mGetMensCategories.execute(new Subscriber() {
+        refreshWomensCategories();
+        refreshMensCategories();
+    }
+
+    private void refreshMensCategories() {
+        mRefreshMensCategories.execute(new RefreshSubscriber() {
             @Override
-            public void onCompleted() {
-                Log.i(TAG, "onCompleted");
+            public void onRefreshed() {
+                Log.i(TAG, "refreshMensCategories - onRefreshed");
+                singleRefreshComplete();
             }
 
             @Override
             public void onError(Throwable e) {
-                Log.i(TAG, "onError");
                 e.printStackTrace();
+            }
+        }, new EmptyInteractorParams());
+    }
+
+    private void refreshWomensCategories() {
+        mRefreshWomensCategories.execute(new RefreshSubscriber() {
+            @Override
+            public void onRefreshed() {
+                Log.i(TAG, "refreshWomensCategories - onRefreshed");
+                singleRefreshComplete();
             }
 
             @Override
-            public void onNext(Object o) {
-                Log.i(TAG, "onNext");
+            public void onError(Throwable e) {
+                e.printStackTrace();
             }
-        }, null);
+        }, new EmptyInteractorParams());
+    }
+
+    private void singleRefreshComplete() {
+        if (mCategoriesRefreshed >= 2) {
+            refreshComplete();
+        } else {
+            mCategoriesRefreshed++;
+        }
+    }
+
+    private void refreshComplete() {
+        mView.showHomeScreen(SPLASH_TIME_OUT);
     }
 
     @Override
     public void pause() {
-
+        //When the Activity is paused, unsubscribe it's presenter from any existing Observable
+        // subscriptions to prevent invalid callbacks
+        mRefreshMensCategories.unsubscribe();
+        mRefreshWomensCategories.unsubscribe();
     }
 
     @Override

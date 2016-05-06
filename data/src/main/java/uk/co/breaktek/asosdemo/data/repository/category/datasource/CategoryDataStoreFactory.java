@@ -25,4 +25,8 @@ public class CategoryDataStoreFactory {
     public CloudCategoryDataStore createCloudDataStore() {
         return new CloudCategoryDataStore(mCloudProvider);
     }
+
+    public LocalCategoryDataStore createLocalDataStore() {
+        return new LocalCategoryDataStore(mLocalDataProvider);
+    }
 }

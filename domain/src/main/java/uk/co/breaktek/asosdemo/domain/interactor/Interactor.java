@@ -1,4 +1,4 @@
-package uk.co.breaktek.asosdemo.data.interactor;
+package uk.co.breaktek.asosdemo.domain.interactor;
 
 import rx.Observable;
 import rx.Scheduler;

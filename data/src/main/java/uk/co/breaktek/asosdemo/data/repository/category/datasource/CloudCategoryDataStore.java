@@ -3,7 +3,7 @@ package uk.co.breaktek.asosdemo.data.repository.category.datasource;
 import javax.inject.Inject;
 
 import rx.Observable;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
 import uk.co.breaktek.asosdemo.data.net.CloudProvider;
 
 /**
@@ -18,12 +18,12 @@ public class CloudCategoryDataStore implements CategoryDataStore {
     }
 
     @Override
-    public Observable<Categories> mensCategories() {
+    public Observable<CategoriesEntity> mensCategories() {
         return mCloudProvider.mensCategories();
     }
 
     @Override
-    public Observable<Categories> womensCategories() {
+    public Observable<CategoriesEntity> womensCategories() {
         return mCloudProvider.womensCategories();
     }
 }

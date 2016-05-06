@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import uk.co.breaktek.asosdemo.data.repository.CategoryRepository;
+import uk.co.breaktek.asosdemo.domain.repository.CategoryRepository;
 import uk.co.breaktek.asosdemo.data.repository.category.CategoryDataRepository;
 
 /**

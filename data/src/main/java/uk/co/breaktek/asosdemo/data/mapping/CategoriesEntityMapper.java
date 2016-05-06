@@ -4,10 +4,10 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import uk.co.breaktek.asosdemo.common.util.ListMappable;
-import uk.co.breaktek.asosdemo.data.enums.CategorySortType;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.domain.enums.CategorySortType;
+import uk.co.breaktek.asosdemo.domain.model.Categories;
 import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
-import uk.co.breaktek.asosdemo.data.model.CategoryListings;
+import uk.co.breaktek.asosdemo.domain.model.CategoryListings;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)

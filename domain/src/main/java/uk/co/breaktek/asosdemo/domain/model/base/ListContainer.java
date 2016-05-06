@@ -1,4 +1,4 @@
-package uk.co.breaktek.asosdemo.data.model.base;
+package uk.co.breaktek.asosdemo.domain.model.base;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

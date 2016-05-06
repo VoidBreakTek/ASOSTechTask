@@ -2,6 +2,7 @@ package uk.co.breaktek.asosdemo.di.components.global;
 
 import uk.co.breaktek.asosdemo.ASOSDemoApplication;
 import uk.co.breaktek.asosdemo.data.di.CloudProviderModule;
+import uk.co.breaktek.asosdemo.data.di.LocalDataProviderModule;
 import uk.co.breaktek.asosdemo.di.module.global.ApplicationModule;
 import uk.co.breaktek.asosdemo.di.module.global.DataRepositoryModule;
 import uk.co.breaktek.asosdemo.di.module.global.InteractorModule;
@@ -18,6 +19,7 @@ public class ApplicationComponentFactory {
         return DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(application))
                 .cloudProviderModule(new CloudProviderModule(application))
+                .localDataProviderModule(new LocalDataProviderModule(application))
                 .interactorModule(new InteractorModule())
                 .dataRepositoryModule(new DataRepositoryModule())
                 .build();

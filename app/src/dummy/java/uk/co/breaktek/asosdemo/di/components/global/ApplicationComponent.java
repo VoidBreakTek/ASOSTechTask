@@ -4,6 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import uk.co.breaktek.asosdemo.data.di.CloudProviderModule;
+import uk.co.breaktek.asosdemo.data.di.LocalDataProviderModule;
 import uk.co.breaktek.asosdemo.di.component.global.BaseApplicationComponent;
 import uk.co.breaktek.asosdemo.di.module.global.ApplicationModule;
 import uk.co.breaktek.asosdemo.di.module.global.DataRepositoryModule;
@@ -16,6 +17,7 @@ import uk.co.breaktek.asosdemo.di.module.global.InteractorModule;
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, DataRepositoryModule.class, InteractorModule.class, CloudProviderModule.class})
+@Component(modules = {ApplicationModule.class, DataRepositoryModule.class, InteractorModule.class,
+        CloudProviderModule.class, LocalDataProviderModule.class})
 public interface ApplicationComponent extends BaseApplicationComponent {
 }

@@ -1,7 +1,7 @@
 package uk.co.breaktek.asosdemo.data.net;
 
 import rx.Observable;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
 
 /**
  * Remote cloud provider interface
@@ -9,7 +9,7 @@ import uk.co.breaktek.asosdemo.data.model.Categories;
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 public interface CloudProvider {
-    Observable<Categories> mensCategories();
+    Observable<CategoriesEntity> mensCategories();
 
-    Observable<Categories> womensCategories();
+    Observable<CategoriesEntity> womensCategories();
 }

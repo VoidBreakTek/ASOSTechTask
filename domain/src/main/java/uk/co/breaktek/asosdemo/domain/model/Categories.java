@@ -1,9 +1,8 @@
-package uk.co.breaktek.asosdemo.data.model;
+package uk.co.breaktek.asosdemo.domain.model;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import uk.co.breaktek.asosdemo.common.util.CustomToStringBuilder;
-import uk.co.breaktek.asosdemo.data.enums.CategorySortType;
 
 /**
  * Root category API model
@@ -13,7 +12,7 @@ import uk.co.breaktek.asosdemo.data.enums.CategorySortType;
 public class Categories {
     private final String description;
     private final CategoryListings categoryListings;
-    private final CategorySortType sortType;
+    private final uk.co.breaktek.asosdemo.domain.enums.CategorySortType sortType;
 
     public Categories(CategoriesBuilder builder) {
         this.description = builder.description;
@@ -29,7 +28,7 @@ public class Categories {
         return categoryListings;
     }
 
-    public CategorySortType getSortType() {
+    public uk.co.breaktek.asosdemo.domain.enums.CategorySortType getSortType() {
         return sortType;
     }
 
@@ -69,7 +68,7 @@ public class Categories {
     public static class CategoriesBuilder {
         private String description;
         private CategoryListings categoryListings;
-        private CategorySortType sortType;
+        private uk.co.breaktek.asosdemo.domain.enums.CategorySortType sortType;
 
         public CategoriesBuilder() {
 
@@ -85,7 +84,7 @@ public class Categories {
             return this;
         }
 
-        public CategoriesBuilder sortType(CategorySortType sortType) {
+        public CategoriesBuilder sortType(uk.co.breaktek.asosdemo.domain.enums.CategorySortType sortType) {
             this.sortType = sortType;
             return this;
         }

@@ -3,12 +3,12 @@ package uk.co.breaktek.asosdemo.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.breaktek.asosdemo.data.enums.CategorySortType;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.domain.enums.CategorySortType;
+import uk.co.breaktek.asosdemo.domain.model.Categories;
 import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
-import uk.co.breaktek.asosdemo.data.model.CategoryListing;
+import uk.co.breaktek.asosdemo.domain.model.CategoryListing;
 import uk.co.breaktek.asosdemo.data.model.CategoryListingEntity;
-import uk.co.breaktek.asosdemo.data.model.CategoryListings;
+import uk.co.breaktek.asosdemo.domain.model.CategoryListings;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)

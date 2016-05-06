@@ -10,7 +10,7 @@ import java.util.Collection;
 
 import uk.co.breaktek.asosdemo.data.BuildConfig;
 import uk.co.breaktek.asosdemo.data.CategoryTestModelConstants;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.domain.model.Categories;
 import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
 import uk.co.breaktek.asosdemo.data.model.CategoryListingEntity;
 

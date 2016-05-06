@@ -28,8 +28,8 @@ public class CloudProviderModule {
 
     @Provides
     @Singleton
-    public CloudProvider provideCloudProvider(Gson gson, CategoriesEntityMapper mapper) {
-        return new DummyCloudProvider(mContext, gson, mapper);
+    public CloudProvider provideCloudProvider(Gson gson) {
+        return new DummyCloudProvider(mContext, gson);
     }
 
     @Provides

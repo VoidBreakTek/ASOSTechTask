@@ -12,42 +12,43 @@ import java.io.InputStreamReader;
 
 import rx.Observable;
 import rx.Subscriber;
-import uk.co.breaktek.asosdemo.data.mapping.CategoriesEntityMapper;
-import uk.co.breaktek.asosdemo.data.model.Categories;
 import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
 
 /**
  * Dummy cloud provider to build out UX before settling on a remote client implementation
- * <p>
+ * <p/>
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 public class DummyCloudProvider implements CloudProvider {
     public final static String TAG = DummyCloudProvider.class.getSimpleName();
     private final Context mContext;
-
     private final Gson mGson;
-    private final CategoriesEntityMapper mCategoriesEntityMapper;
 
-    public DummyCloudProvider(Context context, Gson gson, CategoriesEntityMapper mapper) {
+    public DummyCloudProvider(Context context, Gson gson) {
         this.mContext = context;
         this.mGson = gson;
-        this.mCategoriesEntityMapper = mapper;
     }
 
     @Override
-    public Observable<Categories> mensCategories() {
-        return Observable.create(new Observable.OnSubscribe<Categories>() {
+    public Observable<CategoriesEntity> mensCategories() {
+        return Observable.create(new Observable.OnSubscribe<CategoriesEntity>() {
             @Override
-            public void call(Subscriber<? super Categories> subscriber) {
-                subscriber.onNext(mCategoriesEntityMapper.transform(getDummyCategories()));
+            public void call(Subscriber<? super CategoriesEntity> subscriber) {
+                subscriber.onNext(getDummyCategories());
                 subscriber.onCompleted();
             }
         });
     }
 
     @Override
-    public Observable<Categories> womensCategories() {
-        return null;
+    public Observable<CategoriesEntity> womensCategories() {
+        return Observable.create(new Observable.OnSubscribe<CategoriesEntity>() {
+            @Override
+            public void call(Subscriber<? super CategoriesEntity> subscriber) {
+                subscriber.onNext(getDummyCategories());
+                subscriber.onCompleted();
+            }
+        });
     }
 
     private CategoriesEntity getDummyCategories() {

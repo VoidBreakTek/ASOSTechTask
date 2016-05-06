@@ -1,6 +1,6 @@
-package uk.co.breaktek.asosdemo.data.model;
+package uk.co.breaktek.asosdemo.domain.model;
 
-import uk.co.breaktek.asosdemo.data.model.base.ListContainer;
+import uk.co.breaktek.asosdemo.domain.model.base.ListContainer;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)

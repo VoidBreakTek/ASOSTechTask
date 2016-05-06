@@ -1,4 +1,4 @@
-package uk.co.breaktek.asosdemo.data.enums;
+package uk.co.breaktek.asosdemo.domain.enums;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)

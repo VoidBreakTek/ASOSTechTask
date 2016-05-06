@@ -1,7 +1,7 @@
-package uk.co.breaktek.asosdemo.data.repository;
+package uk.co.breaktek.asosdemo.domain.repository;
 
 import rx.Observable;
-import uk.co.breaktek.asosdemo.data.model.Categories;
+import uk.co.breaktek.asosdemo.domain.model.Categories;
 
 /**
  * Repository pattern interface for Categories data
@@ -18,4 +18,8 @@ public interface CategoryRepository {
      * Get observable to retrieve women's Categories data in full
      */
     Observable<Categories> womensCategories();
+
+    Observable refreshMensCategories();
+
+    Observable refreshWomensCategories();
 }

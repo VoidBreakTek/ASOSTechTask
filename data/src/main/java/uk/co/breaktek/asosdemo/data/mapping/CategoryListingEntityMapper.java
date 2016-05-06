@@ -4,7 +4,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import uk.co.breaktek.asosdemo.common.util.ListMappable;
-import uk.co.breaktek.asosdemo.data.model.CategoryListing;
+import uk.co.breaktek.asosdemo.domain.model.CategoryListing;
 import uk.co.breaktek.asosdemo.data.model.CategoryListingEntity;
 
 /**
