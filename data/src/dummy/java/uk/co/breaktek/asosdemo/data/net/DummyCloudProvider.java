@@ -34,7 +34,7 @@ public class DummyCloudProvider implements CloudProvider {
         return Observable.create(new Observable.OnSubscribe<CategoriesEntity>() {
             @Override
             public void call(Subscriber<? super CategoriesEntity> subscriber) {
-                subscriber.onNext(getDummyCategories());
+                subscriber.onNext(getDummyCategories("dummy_mens_categories.json"));
                 subscriber.onCompleted();
             }
         });
@@ -45,21 +45,21 @@ public class DummyCloudProvider implements CloudProvider {
         return Observable.create(new Observable.OnSubscribe<CategoriesEntity>() {
             @Override
             public void call(Subscriber<? super CategoriesEntity> subscriber) {
-                subscriber.onNext(getDummyCategories());
+                subscriber.onNext(getDummyCategories("dummy_womens_categories.json"));
                 subscriber.onCompleted();
             }
         });
     }
 
-    private CategoriesEntity getDummyCategories() {
-        return mGson.fromJson(getDummyJsonString(), CategoriesEntity.class);
+    private CategoriesEntity getDummyCategories(String jsonFilePath) {
+        return mGson.fromJson(getDummyJsonString(jsonFilePath), CategoriesEntity.class);
     }
 
-    private String getDummyJsonString() {
+    private String getDummyJsonString(String jsonFilePath) {
         StringBuilder buf = new StringBuilder();
         InputStream json = null;
         try {
-            json = mContext.getAssets().open("dummy_dev_categories.json");
+            json = mContext.getAssets().open(jsonFilePath);
 
             BufferedReader in =
                     new BufferedReader(new InputStreamReader(json, "UTF-8"));

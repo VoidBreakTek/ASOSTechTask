@@ -5,9 +5,11 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import uk.co.breaktek.asosdemo.common.util.CustomToStringBuilder;
+import uk.co.breaktek.asosdemo.domain.model.CategoryListing;
 
 /**
  * Abstract list collection wrapper so base data structure can be easily refactored if needed
@@ -32,6 +34,14 @@ public abstract class ListContainer<ItemType> {
 
     public void remove(ItemType listing) {
         this.items.remove(listing);
+    }
+
+    public int size() {
+        return items.size();
+    }
+
+    public Iterator<ItemType> getIterator() {
+        return items.iterator();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package uk.co.breaktek.asosdemo.feature.splash;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -15,6 +16,7 @@ import uk.co.breaktek.asosdemo.di.base.MvpActivity;
 import uk.co.breaktek.asosdemo.di.component.activity.ActivityComponent;
 import uk.co.breaktek.asosdemo.di.component.activity.SplashComponent;
 import uk.co.breaktek.asosdemo.di.module.activity.SplashModule;
+import uk.co.breaktek.asosdemo.feature.home.HomeActivity;
 import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
 public class SplashActivity extends MvpActivity implements SplashView {
@@ -70,7 +72,7 @@ public class SplashActivity extends MvpActivity implements SplashView {
     }
 
     private void startHomeActivity() {
-//        startActivity(new Intent(this, HomeActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override

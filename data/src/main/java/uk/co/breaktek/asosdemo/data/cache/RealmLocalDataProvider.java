@@ -47,11 +47,9 @@ public class RealmLocalDataProvider implements LocalDataProvider {
     private CategoriesEntity retrieveCategoriesWithDescription(String description) {
         Realm realm = Realm.getInstance(mRealmConfiguration);
         try {
-            CategoriesEntity entity = realm.where(CategoriesEntity.class)
+            return realm.where(CategoriesEntity.class)
                     .equalTo("description", description)
                     .findFirst();
-            realm.commitTransaction();
-            return entity;
         } finally {
             realm.close();
         }
