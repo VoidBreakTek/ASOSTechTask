@@ -63,9 +63,7 @@ dependencies {
     compile coreDependencies.butterknife
     compile coreDependencies.dagger2
     provided coreDependencies.jsr250
-    apt(coreDependencies.dagger2Compiler) {
-        exclude module: 'guava'
-    }
+    apt(coreDependencies.dagger2Compiler)
 
     compile coreDependencies.apacheCommons
     compile coreDependencies.okHttpClient

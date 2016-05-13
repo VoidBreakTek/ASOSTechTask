@@ -10,6 +10,7 @@ import rx.Subscriber;
 import uk.co.breaktek.asosdemo.domain.interactor.EmptyInteractorParams;
 import uk.co.breaktek.asosdemo.domain.interactor.Interactor;
 import uk.co.breaktek.asosdemo.domain.model.Categories;
+import uk.co.breaktek.asosdemo.domain.model.CategoryListing;
 import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
 /**
@@ -18,6 +19,7 @@ import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 @Singleton
 public class HomePresenter implements ActivityPresenter<HomeView> {
     public static final String TAG = HomePresenter.class.getSimpleName();
+    private Categories mCurrentlyShownCategories;
 
     @Inject
     @Named("GetMensCategories")
@@ -34,7 +36,6 @@ public class HomePresenter implements ActivityPresenter<HomeView> {
 
     }
 
-    @Override
     public void initialize() {
         Log.d(TAG, "Presenter initialize");
         mGetWomensCategories.execute(new MenuOptionsSubscriber(), new EmptyInteractorParams());
@@ -56,15 +57,23 @@ public class HomePresenter implements ActivityPresenter<HomeView> {
 
     @Override
     public void bind(HomeView view) {
-        this.mView = view;
+        mView = view;
     }
 
-    public void onClickNavBarWomensTab() {
-        mGetWomensCategories.execute(new MenuOptionsSubscriber(), new EmptyInteractorParams());
+
+    public void onNavigationCategorySelected(NavigationCategory navigationCategory) {
+        switch (navigationCategory) {
+            case MENS:
+                mGetWomensCategories.execute(new MenuOptionsSubscriber(), new EmptyInteractorParams());
+                break;
+            case WOMENS:
+                mGetMensCategories.execute(new MenuOptionsSubscriber(), new EmptyInteractorParams());
+                break;
+        }
     }
 
-    public void onClickNavBarMensTab() {
-        mGetMensCategories.execute(new MenuOptionsSubscriber(), new EmptyInteractorParams());
+    public String getMenuCategoryId(int index) {
+        return mCurrentlyShownCategories.getCategoryListings().get(index).getCategoryId();
     }
 
     private class MenuOptionsSubscriber extends Subscriber<Categories> {
@@ -72,7 +81,8 @@ public class HomePresenter implements ActivityPresenter<HomeView> {
 
         @Override
         public void onCompleted() {
-            mView.setMenuCategories(mCategories);
+            mCurrentlyShownCategories = mCategories;
+            mView.showMenuCategories(mCategories);
         }
 
         @Override
@@ -82,7 +92,7 @@ public class HomePresenter implements ActivityPresenter<HomeView> {
 
         @Override
         public void onNext(Categories categories) {
-            this.mCategories = categories;
+            mCategories = categories;
         }
     }
 }

@@ -8,10 +8,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     //DI dependencies
-    compile(coreDependencies.dagger2Compiler) {
-        exclude module: 'guava'
-    }
-    compile coreDependencies.glassfishAnnotation
+    compile coreDependencies.jsr250
     compile coreDependencies.dagger2
 
     //Rx dependencies

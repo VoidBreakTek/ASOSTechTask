@@ -7,5 +7,5 @@ import uk.co.breaktek.asosdemo.mvp.ActivityMvpView;
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 public interface HomeView extends ActivityMvpView {
-    void setMenuCategories(Categories categories);
+    void showMenuCategories(Categories categories);
 }

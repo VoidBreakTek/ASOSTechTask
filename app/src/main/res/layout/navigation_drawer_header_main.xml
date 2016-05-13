@@ -14,8 +14,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/navigationview_category_tab_background"
         android:gravity="center"
-        android:text="Shop Women"
+        android:text="@string/navigation_view_category_tab_women_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
@@ -23,8 +24,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:background="@drawable/navigationview_category_tab_background"
         android:gravity="center"
-        android:text="Shop Men"
+        android:text="@string/navigation_view_category_tab_men_label"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>

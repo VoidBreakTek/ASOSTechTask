@@ -6,7 +6,5 @@ package uk.co.breaktek.asosdemo.mvp;
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 public interface Presenter<ViewType extends MvpView> {
-    void initialize();
-
     void bind(ViewType view);
 }

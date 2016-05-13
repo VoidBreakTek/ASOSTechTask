@@ -72,10 +72,11 @@ public class CategoryDataRepository implements CategoryRepository {
         }
     };
 
-    private Func1<CategoriesEntity, Categories> mapCategoriesEntityFunc = new Func1<CategoriesEntity, Categories>() {
+    private Func1<CategoriesEntity, Categories> mapCategoriesEntityFunc =
+            new Func1<CategoriesEntity, Categories>() {
         @Override
-        public Categories call(CategoriesEntity categoriesEntity) {
-            return mMapper.transform(categoriesEntity);
+        public Categories call(CategoriesEntity entity) {
+            return mMapper.transform(entity);
         }
     };
 }

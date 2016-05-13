@@ -4,8 +4,10 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import uk.co.breaktek.asosdemo.data.repository.product.ProductDataRepository;
 import uk.co.breaktek.asosdemo.domain.repository.CategoryRepository;
 import uk.co.breaktek.asosdemo.data.repository.category.CategoryDataRepository;
+import uk.co.breaktek.asosdemo.domain.repository.ProductRepository;
 
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
@@ -13,11 +15,20 @@ import uk.co.breaktek.asosdemo.data.repository.category.CategoryDataRepository;
 @Module
 public class DataRepositoryModule {
     /**
-     * Data layer Property repository
+     * Data layer Category repository
      */
     @Provides
     @Singleton
     CategoryRepository categoryRepository(CategoryDataRepository dataRepository) {
+        return dataRepository;
+    }
+
+    /**
+     * Data layer Product repository
+     */
+    @Provides
+    @Singleton
+    ProductRepository productRepository(ProductDataRepository dataRepository) {
         return dataRepository;
     }
 }

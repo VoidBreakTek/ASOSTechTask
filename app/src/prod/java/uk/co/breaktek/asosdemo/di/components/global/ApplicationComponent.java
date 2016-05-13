@@ -15,6 +15,6 @@ import uk.co.breaktek.asosdemo.di.module.global.InteractorModule;
  * Chris Shotton (voidbreaktek@gmail.com)
  */
 @Singleton
-@Component(modules = {ApplicationModule.class, DataRepositoryModule.class, InteractorModule.class})
+@Component(modules = {ApplicationModule.class, DataRepositoryModule.class, InteractorModule.class, UserDataModule.class})
 public interface ApplicationComponent extends BaseApplicationComponent {
 }

@@ -9,7 +9,6 @@ import uk.co.breaktek.asosdemo.data.net.CloudProvider;
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-@Singleton
 public class CategoryDataStoreFactory {
     private final CloudProvider mCloudProvider;
     private final LocalDataProvider mLocalDataProvider;

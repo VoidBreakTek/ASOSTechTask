@@ -9,6 +9,7 @@ import uk.co.breaktek.asosdemo.di.component.global.BaseApplicationComponent;
 import uk.co.breaktek.asosdemo.di.module.global.ApplicationModule;
 import uk.co.breaktek.asosdemo.di.module.global.DataRepositoryModule;
 import uk.co.breaktek.asosdemo.di.module.global.InteractorModule;
+import uk.co.breaktek.asosdemo.di.module.global.UserDataModule;
 
 /**
  * Root application component to be initialized on startup from the base extended Application
@@ -18,6 +19,6 @@ import uk.co.breaktek.asosdemo.di.module.global.InteractorModule;
  */
 @Singleton
 @Component(modules = {ApplicationModule.class, DataRepositoryModule.class, InteractorModule.class,
-        CloudProviderModule.class, LocalDataProviderModule.class})
+        CloudProviderModule.class, LocalDataProviderModule.class, UserDataModule.class})
 public interface ApplicationComponent extends BaseApplicationComponent {
 }

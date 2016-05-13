@@ -1,7 +1,9 @@
-package uk.co.breaktek.asosdemo.di.base;
+package uk.co.breaktek.asosdemo.mvp.base;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import uk.co.breaktek.asosdemo.di.base.DaggerActivity;
 import uk.co.breaktek.asosdemo.mvp.ActivityMvpView;
 import uk.co.breaktek.asosdemo.mvp.ActivityPresenter;
 
@@ -15,8 +17,10 @@ public abstract class MvpActivity extends DaggerActivity implements ActivityMvpV
     public static final String TAG = MvpActivity.class.getSimpleName();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        bindPresenter();
     }
 
     @Override
@@ -38,4 +42,6 @@ public abstract class MvpActivity extends DaggerActivity implements ActivityMvpV
     }
 
     protected abstract ActivityPresenter getPresenter();
+
+    protected abstract void bindPresenter();
 }

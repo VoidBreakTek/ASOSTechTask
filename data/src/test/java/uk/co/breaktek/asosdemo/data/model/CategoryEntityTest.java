@@ -17,8 +17,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-@RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class, sdk = 21)
 public class CategoryEntityTest {
     private Gson mGson;
 

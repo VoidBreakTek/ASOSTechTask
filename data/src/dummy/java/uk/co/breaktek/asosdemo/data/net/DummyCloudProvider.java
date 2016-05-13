@@ -13,6 +13,8 @@ import java.io.InputStreamReader;
 import rx.Observable;
 import rx.Subscriber;
 import uk.co.breaktek.asosdemo.data.model.CategoriesEntity;
+import uk.co.breaktek.asosdemo.data.model.CategoryProductListingsEntity;
+import uk.co.breaktek.asosdemo.domain.model.CategoryProductListings;
 
 /**
  * Dummy cloud provider to build out UX before settling on a remote client implementation
@@ -49,6 +51,21 @@ public class DummyCloudProvider implements CloudProvider {
                 subscriber.onCompleted();
             }
         });
+    }
+
+    @Override
+    public Observable<CategoryProductListingsEntity> categoryProductListings(String categoryId) {
+        return Observable.create(new Observable.OnSubscribe<CategoryProductListingsEntity>() {
+            @Override
+            public void call(Subscriber<? super CategoryProductListingsEntity> subscriber) {
+                subscriber.onNext(getDummyCategoryProductListings("dummy_category_product_listings.json"));
+                subscriber.onCompleted();
+            }
+        });
+    }
+
+    private CategoryProductListingsEntity getDummyCategoryProductListings(String jsonFilePath) {
+        return mGson.fromJson(getDummyJsonString(jsonFilePath), CategoryProductListingsEntity.class);
     }
 
     private CategoriesEntity getDummyCategories(String jsonFilePath) {

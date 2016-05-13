@@ -22,7 +22,6 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
     public static final String TAG = SplashPresenter.class.getSimpleName();
     private static final int SPLASH_TIME_OUT = 1500;
 
-
     @Inject
     @Named("RefreshMensCategories")
     Interactor mRefreshMensCategories;
@@ -40,14 +39,13 @@ public class SplashPresenter implements ActivityPresenter<SplashView> {
         // request without an explicit module @Provides method
     }
 
-    @Override
     public void initialize() {
         Log.d(TAG, "Presenter initialize");
     }
 
     @Override
     public void bind(SplashView view) {
-        this.mView = view;
+        mView = view;
     }
 
     @Override

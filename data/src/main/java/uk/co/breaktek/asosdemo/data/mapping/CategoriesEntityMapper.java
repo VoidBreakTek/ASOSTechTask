@@ -12,7 +12,6 @@ import uk.co.breaktek.asosdemo.domain.model.CategoryListings;
 /**
  * Chris Shotton (voidbreaktek@gmail.com)
  */
-@Singleton
 public class CategoriesEntityMapper extends ListMappable<CategoriesEntity, Categories> {
     @Inject CategoryListingEntityMapper mCategoryListingEntityMapper;
 

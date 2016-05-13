@@ -1,6 +1,7 @@
 package uk.co.breaktek.asosdemo.di.module.global;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import javax.inject.Singleton;
 

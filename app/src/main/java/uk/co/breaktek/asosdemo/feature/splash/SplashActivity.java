@@ -11,8 +11,7 @@ import javax.inject.Inject;
 import butterknife.ButterKnife;
 import uk.co.breaktek.asosdemo.ASOSDemoApplication;
 import uk.co.breaktek.asosdemo.R;
-import uk.co.breaktek.asosdemo.di.base.DaggerActivity;
-import uk.co.breaktek.asosdemo.di.base.MvpActivity;
+import uk.co.breaktek.asosdemo.mvp.base.MvpActivity;
 import uk.co.breaktek.asosdemo.di.component.activity.ActivityComponent;
 import uk.co.breaktek.asosdemo.di.component.activity.SplashComponent;
 import uk.co.breaktek.asosdemo.di.module.activity.SplashModule;
@@ -34,23 +33,22 @@ public class SplashActivity extends MvpActivity implements SplashView {
     SplashPresenter mPresenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_splash);
         ButterKnife.bind(this);
-        mPresenter.bind(this);
         mPresenter.initialize();
     }
 
     @Override
-    protected ActivityComponent setupActivityComponent() {
+    protected ActivityComponent setupComponent() {
         // Here the Activity's SubComponent is constructed with the base Application Component as
         // it's parent. This allows access to the global dependencies supplied by the Application
         // Component's modules.
         SplashComponent component = ASOSDemoApplication.get(this)
                 .getAppComponent()
                 .with(new SplashModule(this));
-
         component.inject(this);
         return component;
     }
@@ -93,5 +91,11 @@ public class SplashActivity extends MvpActivity implements SplashView {
     @Override
     protected ActivityPresenter getPresenter() {
         return mPresenter;
+    }
+
+    @Override
+    protected void bindPresenter() {
+        Log.d(TAG, "bindPresenter");
+        mPresenter.bind(this);
     }
 }

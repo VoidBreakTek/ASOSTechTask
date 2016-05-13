@@ -67,6 +67,7 @@ dependencies {
     compile supportDependencies.design
     compile supportDependencies.recyclerView
     compile supportDependencies.multidex
+    compile supportDependencies.percentRelativeLayout
 
     //Rx dependencies
     compile coreDependencies.rxJava
