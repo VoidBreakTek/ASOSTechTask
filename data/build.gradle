@@ -1,0 +1,84 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.neenbedankt.android-apt'
+apply plugin: 'realm-android'
+
+android {
+    compileSdkVersion appInfo.compileSdkVersion
+    buildToolsVersion appInfo.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion appInfo.minSdkVersion
+        targetSdkVersion appInfo.targetSdkVersion
+        versionCode appInfo.appVersionCode
+        versionName appInfo.appVersionName
+        multiDexEnabled true
+    }
+
+    //There are known lint exceptions in Dagger2 compiler transitive dependencies which are propagated to our linting. This closure will disable the checks for that lib.
+    lintOptions {
+        lintConfig rootProject.file('gradlescripts/lint.xml')
+    }
+
+    //Settings to 2g to not GC overhead limit on dex but also not hit CircleCI 4g total limit
+    dexOptions {
+        javaMaxHeapSize "4g"
+        preDexLibraries = false
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    //This is to publish additional flavored libs
+    publishNonDefault true
+    productFlavors {
+        dummy {
+            versionCode 1
+            versionName versionName + "-dummy-" + versionCode + "-" + getDate()
+        }
+        prod {
+            versionCode 2
+            versionName versionName + "-prod-" + versionCode + "-" + getDate()
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+dependencies {
+    //Local libs
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Rx Dependencies
+    compile coreDependencies.rxJava
+    compile coreDependencies.rxAndroid
+
+    //DI dependencies
+    compile coreDependencies.butterknife
+    compile coreDependencies.dagger2
+    provided coreDependencies.jsr250
+    apt(coreDependencies.dagger2Compiler)
+
+    compile coreDependencies.apacheCommons
+    compile coreDependencies.okHttpClient
+    compile coreDependencies.gson
+
+    //Support dependencies
+    compile supportDependencies.multidex
+
+    //Project dependencies
+    compile project(':common')
+    compile project(':domain')
+
+    //Test dependencies
+    testCompile testDependencies.junit
+    testCompile testDependencies.nevado
+    testCompile testDependencies.mockitoCore
+    testCompile testDependencies.robolectric
+}

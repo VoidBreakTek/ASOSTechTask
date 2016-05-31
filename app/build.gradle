@@ -1,15 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    compileSdkVersion appInfo.compileSdkVersion
+    buildToolsVersion appInfo.buildToolsVersion
 
     defaultConfig {
         applicationId "uk.co.breaktek.asosdemo"
-        minSdkVersion 17
-        targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion appInfo.minSdkVersion
+        targetSdkVersion appInfo.targetSdkVersion
+        versionCode appInfo.dataVersionCode
+        versionName appInfo.dataVersionName
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -17,11 +19,79 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    dexOptions {
+        preDexLibraries = false
+        javaMaxHeapSize "4g"
+    }
+
+    //There are known lint exceptions in Dagger2 compiler transitive dependencies which are propagated to our linting. This closure will disable the checks for that lib.
+    lintOptions {
+        lintConfig rootProject.file('gradlescripts/lint.xml')
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        dummy {
+            flavorDimension "version"
+            applicationId "uk.co.breaktek.asosdemo"
+            versionCode 1
+        }
+        prod {
+            flavorDimension "version"
+            applicationId "uk.co.breaktek.asosdemo"
+            versionCode 2
+        }
+    }
+
+    apply from: rootProject.file('gradlescripts/flavored-version-code.gradle')
+
+    packagingOptions {
+        //Many libs include metainf that isnt currently stripped correctly by gradle
+        //for Android. Common metainf files are set to be ignored via this script
+        apply from: rootProject.file('gradlescripts/exclude-metainf.gradle')
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
 }
 
 dependencies {
+    //Local lib dependencies
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.android.support:design:23.3.0'
+
+    //Android support depedencies
+    compile supportDependencies.appCompat
+    compile supportDependencies.design
+    compile supportDependencies.recyclerView
+    compile supportDependencies.multidex
+    compile supportDependencies.percentRelativeLayout
+
+    //Rx dependencies
+    compile coreDependencies.rxJava
+    compile coreDependencies.rxAndroid
+
+    //DI dependencies
+    compile coreDependencies.butterknife
+    compile coreDependencies.dagger2
+    provided coreDependencies.jsr250
+    apt 'com.google.guava:guava:19.0'
+    apt(coreDependencies.dagger2Compiler)
+
+    //3rd party view dependencies
+    compile coreDependencies.picasso
+
+    //Unit test dependencies
+    testCompile testDependencies.junit
+
+    //Local module dependencies
+    compile project(':domain')
+    compile project(':common')
+    compile project(':data')
+
+    //Configure which data module dependency to use by flavor
+    dummyCompile project(path: ':data', configuration: 'dummyRelease')
+    prodCompile project(path: ':data', configuration: 'prodRelease')
 }

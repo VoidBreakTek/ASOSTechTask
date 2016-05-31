@@ -1,0 +1,7 @@
+<!-- https://github.com/appformation/smash/commit/68357ade67e73647b2aad09ad4bacbaf2c925e1e -->
+<lint>
+    <issue id="InvalidPackage">
+        <ignore regexp=".*okio.*"/>
+        <ignore regexp=".*dagger-compiler.*"/>
+    </issue>
+</lint>
